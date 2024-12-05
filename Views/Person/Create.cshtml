@@ -1,0 +1,33 @@
+﻿@model Test.ViewModels.Person.CreatePersonDto
+@{
+    ViewBag.Title = "Create Person";
+}
+
+<form class="forms" method="post" asp-controller="Person" as-action="Create" enctype="multipart/form-data">
+    <div class="form-control">
+        <label for="Name">Name</label>
+        <input asp-for="Name" placeholder="Enter person Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-control">
+        <label for="FormFile">Upload PDF</label>
+        <input id="fileUpload" type="file" asp-for="FormFile" accept=".pdf" />
+        <span asp-validation-for="FormFile" class="text-danger"></span>
+
+        <div id="pdfView">
+            
+        </div>
+    </div>
+
+    <div class="form-control">
+        <label for="Description">Description</label>
+        <textarea asp-for="Description" placeholder="Enter a description"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-control">
+        <button class="btn-submit" type="submit">Submit</button>
+        <a  href="/">Cancel</a>
+    </div>
+</form>

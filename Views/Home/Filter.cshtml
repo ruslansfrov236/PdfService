@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<Person>
+@{
+    ViewBag.Title = "Search Person";
+}
+
+<form asp-controller="Home" asp-action="Filter" method="get">
+  
+    <input class="search" type="text" name="search" placeholder="Search by name..." />
+
+    
+    <button class="btn-search" type="submit">Search</button>
+</form>
+
+
+<div>
+    @if (Model != null && Model.Any())
+    {
+        foreach (var person in Model)
+        {
+            <div>
+                <p>@person.Name + @person.Description +@person.CreatedDate</p>
+                
+            </div>
+        }
+    }
+    else
+    {
+        <p>No results found.</p>
+    }
+</div>

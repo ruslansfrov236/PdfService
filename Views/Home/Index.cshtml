@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+
+}
+
+@model List<Person>
+
+<table>
+
+    <thead>
+        <tr>
+            <th>№</th>
+
+            <th>Name <a href="?values=discName"><button type="button" class="btn-sort"><i class="fa-solid fa-sort"></i></button></a></th>
+            <th>Created Date <a href="?values=discDate"><button type="button" class="btn-sort"> <i class="fa-solid fa-sort"></i></button></a></th>
+            <th>Update Date <a href="?values=discUpdateDate"><button type="button" class="btn-sort"><i class="fa-solid fa-sort"></i></button></a></th>
+            <th>Description <a href="?values=discDescription"><button type="button" class="btn-sort"><i class="fa-solid fa-sort"></i></button></a></th>
+
+            <th>Views</th>
+            <th>Pdf</th>
+            <th>Edit</th>
+            <th>Delete</th>
+    </thead>
+    <tbody>
+        @{
+            if (Model == null || !Model.Any())
+            {
+                <tr>
+                    <td colspan="10">Her Hansi melumat movcud deyil</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var p in Model)
+                {
+                    <tr>
+                        <td>@p.Id</td>
+                        <td>@p.Name</td>
+                        <td>@p.CreatedDate</td>
+                        <td>@p.UpdatedDate</td>
+                        <td>@p.Description</td>
+                        <td>
+                            
+                            <a class="link" target="_blank" href="/person/printall/@p.Id" >View</a>
+                        </td>
+                        <td>
+                            <a class="link" target="_blank" href="/person/getinvoke/@p.Id"> PDF</a>
+
+                        </td>
+                        <td>
+                            <a class="link" href="/person/update/@p.Id">Edit</a>
+                        </td>
+                        <td>
+                           
+                            <form method="post" asp-controller="Person" asp-action="Delete" asp-route-id="@p.Id">
+                                <button class="link" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+        }
+
+    </tbody>
+</table>

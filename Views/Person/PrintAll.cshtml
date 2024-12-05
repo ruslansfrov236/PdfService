@@ -1,0 +1,7 @@
+﻿
+
+@model Person
+@{
+    var base64Pdf = Convert.ToBase64String(Model.FileData);
+}
+<embed src="data:application/pdf;base64,@base64Pdf" width="1000px" height="600px" />
